@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictor wyników piłki nożnej | ML</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="prediction-card">
+            <header class="card-header">
+                <h1>Football matches Predictor</h1>
+                <p class="subtitle">Hybrydowy model ML (Gradient Boosting & Regresja Poissona)</p>
+            </header>
+
+            <main class="card-body">
+
+                <div id="notification" class="notification hidden"></div>
+
+                <div class="neutral-toggle-container">
+                    <input type="checkbox" id="neutral-ground-checkbox">
+                    <label for="neutral-ground-checkbox" class="neutral-toggle-label">
+                        <span class="checkbox-box"></span>
+                        Mecz na terenie neutralnym (brak przewagi własnego boiska)
+                    </label>
+                </div>
+
+                <div class="matchup-container">
+
+                    <div class="team-column">
+                        <div class="select-wrapper">
+                            <img class="flag-icon" id="home-flag" src="https://flagcdn.com/w40/un.png" alt="flag">
+                            <select id="home-team-select">
+                                <option value="" disabled selected>Wybierz gospodarza</option>
+                            </select>
+                        </div>
+                        <div class="score-display" id="home-score-box">-</div>
+                        <div class="team-role" id="home-role-label">GOSPODARZ</div>
+                    </div>
+
+                    <div class="vs-container">
+                        <div class="vs-badge">VS</div>
+                    </div>
+
+                    <div class="team-column">
+                        <div class="select-wrapper">
+                            <img class="flag-icon" id="away-flag" src="https://flagcdn.com/w40/un.png" alt="flag">
+                            <select id="away-team-select">
+                                <option value="" disabled selected>Wybierz gościa</option>
+                            </select>
+                        </div>
+                        <div class="score-display" id="away-score-box">-</div>
+                        <div class="team-role" id="away-role-label">GOŚĆ</div>
+                    </div>
+                </div>
+
+                <div class="probability-section">
+                    <h3>Prawdopodobieństwo wyniku</h3>
+                    <div class="google-bar-container">
+                        <div class="google-bar-segment segment-team1" id="bar-team1" style="width: 33.33%;"></div>
+                        <div class="google-bar-segment segment-draw" id="bar-draw" style="width: 33.33%;"></div>
+                        <div class="google-bar-segment segment-team2" id="bar-team2" style="width: 33.33%;"></div>
+                    </div>
+
+                    <div class="probability-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot dot-team1"></span>
+                            <span class="legend-text" id="legend-team1-text">Gospodarz: 33%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot dot-draw"></span>
+                            <span class="legend-text" id="legend-draw-text">Remis: 33%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot dot-team2"></span>
+                            <span class="legend-text" id="legend-team2-text">Gość: 33%</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="card-footer">
+                <button type="button" id="predict-btn" class="predict-button">
+                    <span>Oblicz prawdopodobieństwo</span>
+                    <div class="spinner hidden" id="btn-spinner"></div>
+                </button>
+            </footer>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
